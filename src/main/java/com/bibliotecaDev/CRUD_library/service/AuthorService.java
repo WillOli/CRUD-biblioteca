@@ -1,5 +1,6 @@
 package com.bibliotecaDev.CRUD_library.service;
 
+import com.bibliotecaDev.CRUD_library.exception.RunTimeFoundException;
 import com.bibliotecaDev.CRUD_library.model.Author;
 import com.bibliotecaDev.CRUD_library.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class AuthorService {
 
     public Author updateAuthor(Long id, Author authorDetails) {
         Author author = authorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Author not found for this id :: " + id));
+                .orElseThrow(() -> new RunTimeFoundException("Author not found for this id :: " + id));
 
         author.setName(authorDetails.getName());
         author.setBio(authorDetails.getBio());
@@ -38,7 +39,7 @@ public class AuthorService {
 
     public void deleteAuthor(Long id) {
         Author author = authorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Author not found for this id :: " + id));
+                .orElseThrow(() -> new RunTimeFoundException("Author not found for this id :: " + id));
 
         authorRepository.delete(author);
     }

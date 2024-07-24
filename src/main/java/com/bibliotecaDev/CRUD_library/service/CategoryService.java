@@ -1,5 +1,6 @@
 package com.bibliotecaDev.CRUD_library.service;
 
+import com.bibliotecaDev.CRUD_library.exception.RunTimeFoundException;
 import com.bibliotecaDev.CRUD_library.model.Category;
 import com.bibliotecaDev.CRUD_library.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class CategoryService{
 
     public Category updateCategory(Long id, Category categoryDetails) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found for this id :: " + id));
+                .orElseThrow(() -> new RunTimeFoundException("Category not found for this id :: " + id));
 
         category.setName(categoryDetails.getName());
         return categoryRepository.save(category);
@@ -36,7 +37,7 @@ public class CategoryService{
 
     public void deleteCategory(Long id) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found for this id :: " + id));
+                .orElseThrow(() -> new RunTimeFoundException("Category not found for this id :: " + id));
         categoryRepository.delete(category);
     }
 

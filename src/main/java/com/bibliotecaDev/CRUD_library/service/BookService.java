@@ -1,5 +1,6 @@
 package com.bibliotecaDev.CRUD_library.service;
 
+import com.bibliotecaDev.CRUD_library.exception.RunTimeFoundException;
 import com.bibliotecaDev.CRUD_library.model.Book;
 import com.bibliotecaDev.CRUD_library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class BookService {
 
     public Book updateBook(Long id, Book bookDetails) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found for this id :: " + id));
+                .orElseThrow(() -> new RunTimeFoundException("Book not found for this id :: " + id));
 
         book.setTitle(bookDetails.getTitle());
         book.setIsbn(bookDetails.getIsbn());
@@ -41,7 +42,7 @@ public class BookService {
 
     public void deleteBook(Long id) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found for this id :: " + id));
+                .orElseThrow(() -> new RunTimeFoundException("Book not found for this id :: " + id));
         bookRepository.delete(book);
     }
 }

@@ -1,6 +1,9 @@
 package com.bibliotecaDev.CRUD_library.model;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,7 +14,7 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
-    private Date publication_date;
+    private LocalDate publication_date;
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
@@ -24,7 +27,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String title, String isbn, Date publication_date, Author author, Category category) {
+    public Book(Long id, String title, String isbn, LocalDate publication_date, Author author, Category category) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
@@ -57,11 +60,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Date getPublication_date() {
+    public LocalDate getPublication_date() {
         return publication_date;
     }
 
-    public void setPublication_date(Date publication_date) {
+    public void setPublication_date(LocalDate publication_date) {
         this.publication_date = publication_date;
     }
 
