@@ -1,5 +1,6 @@
 package com.bibliotecaDev.CRUD_library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
@@ -16,10 +17,12 @@ public class Book {
     private String isbn;
     private LocalDate publication_date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;

@@ -1,5 +1,6 @@
 package com.bibliotecaDev.CRUD_library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Author {
     @Lob
     private String bio;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "author")
     private List<Book> books;
 
